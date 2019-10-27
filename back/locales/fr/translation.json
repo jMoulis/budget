@@ -1,0 +1,20 @@
+{
+  "jwtExpired": "Votre code a expiré. Si vous souhaitez changer votre mot de passe cliquez sur le lien suivant",
+  "invalidToken": "Code invalide",
+  "emailMandatory": "Email obligatoire",
+  "passwordMandatory": "Mot de passe obligatoire",
+  "422": "Erreur durant l'action",
+  "mailSent": "Mail sent to {{email}}. Please check your email. Don't forget to check your spam as well. Please follow the e-mail's instructions",
+  "emailUsed": "Cet email est déjà utilisé.",
+  "emailUsedProvider": "Ce compte E2 existe, mais vous l'avez crée via {{provider}}. Veuillez selectionner le lien {{provider}} pour vous identifier",
+  "userNotFound": "Utilisateur introuvable",
+  "loginFailed": "Erreur de connexion: Email ou mot passe invalide",
+  "invalidValue": "Format invalide",
+  "notAllowed": "Vous n'êtes pas autorisé",
+  "messagePwd": {
+    "error": "{{message}}",
+    "success": "{{message}}",
+    "passwordRequested": "E² demande de changement de mot de passe",
+    "invalidPassword": "Mot de passe incorrect"
+  }
+}
