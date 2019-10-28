@@ -7,7 +7,7 @@
 /back/node_modules
 # testing
 /coverage
-
+/back/config/dev.js
 # production
 /build
 
