@@ -8,7 +8,7 @@
 # testing
 /coverage
 /back/config/dev.js
-/back/helpers
+/back/helpers/*.json
 # production
 /build
 
