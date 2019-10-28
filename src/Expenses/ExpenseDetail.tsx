@@ -29,9 +29,7 @@ const ExpenseDetail: React.FC<Props> = ({ match }) => {
       {response && Object.keys(response).length > 0 && (
         <>
           <span>{response.label}</span>
-          {response.file && (
-            <img src={`http://localhost:8050${response.file}`} />
-          )}
+          {response.file && <img src={response.file} />}
         </>
       )}
     </div>

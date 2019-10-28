@@ -14,7 +14,7 @@ const Nav = styled.nav`
 const Header: React.FC<Props> = () => {
   const location = useLocation();
   const history = useHistory();
-  console.log(location);
+
   return (
     <Root>
       <Nav>

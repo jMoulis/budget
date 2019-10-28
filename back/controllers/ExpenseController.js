@@ -23,10 +23,11 @@ module.exports = {
     try {
       const newExpense = await Expense.create({ ...req.body });
       if (req.file) {
+        console.log(req.file);
         await Expense.updateOne(
           { _id: newExpense._id },
           {
-            file: `/files/${req.file.filename}`
+            file: req.file.gcsUrl
           }
         );
       }
