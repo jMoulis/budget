@@ -1,9 +1,11 @@
 const authRoutes = require('./authRoutes');
 const userRoutes = require('./userRoutes');
-const expenseRoutes = require('./expenseRoutes');
+const transactionRoutes = require('./transactionRoutes');
+const budgetRoutes = require('./budgetRoutes');
 
 module.exports = app => {
   authRoutes(app);
   userRoutes(app);
-  expenseRoutes(app);
+  budgetRoutes(app);
+  transactionRoutes(app);
 };

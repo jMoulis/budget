@@ -21,7 +21,7 @@ mongoose
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
-      useFindAndModify: false
+      useFindAndModify: false,
     }
   )
   .catch(error => console.warn(error));
@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'test') {
   const httpsOptions = {
     key,
     cert,
-    cer
+    cer,
   };
   app.use(forceSsl);
   server = https.createServer(httpsOptions, app);
@@ -58,11 +58,11 @@ i18next
   .use(i18nextMiddleware.LanguageDetector)
   .init({
     backend: {
-      loadPath: `${__dirname}/locales/{{lng}}/{{ns}}.json`
+      loadPath: `${__dirname}/locales/{{lng}}/{{ns}}.json`,
     },
     fallbackLng: 'fr',
     preload: ['fr', 'en'],
-    saveMissing: true
+    saveMissing: true,
   });
 
 app.use('/', express.static(`${__dirname}/build`));
@@ -73,7 +73,6 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 routes(app);
-
 const PORT = process.env.PORT || 8050;
 server.listen(PORT, () => {
   console.log('Listen PORT', PORT);

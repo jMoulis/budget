@@ -1,0 +1,42 @@
+[
+  {
+    "date": "12/09/2019",
+    "label": "Achat de vêtement Yaël",
+    "category": "Vêtements",
+    "amount": 120,
+    "estimated": true,
+    "transactionType": "expense"
+  },
+  {
+    "date": "12/09/2019",
+    "label": "Achat de vêtement Yaël",
+    "category": "Vêtements",
+    "amount": 120,
+    "estimated": false,
+    "transactionType": "income"
+  },
+  {
+    "date": "12/09/2019",
+    "label": "Loyer appart",
+    "category": "Loyer",
+    "amount": 120,
+    "estimated": true,
+    "transactionType": "expense"
+  },
+  {
+    "date": "12/09/2019",
+    "label": "Salaire Eukleia",
+    "category": "Salaire",
+    "amount": 1200,
+    "estimated": true,
+    "transactionType": "income"
+  },
+  {
+    "date": "12/09/2019",
+    "label": "Salaire Eukleia",
+    "category": "Salaire",
+    "amount": 1250,
+    "estimated": false,
+    "transactionType": "income"
+  }
+]

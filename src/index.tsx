@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Global } from '@emotion/core';
-import App from './App';
+import styles from 'styles/styles';
+import App from 'components/App/App';
 import * as serviceWorker from './serviceWorker';
-import styles from './styles/styles';
 
 ReactDOM.render(
   <BrowserRouter>
