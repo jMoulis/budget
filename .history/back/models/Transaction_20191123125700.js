@@ -36,12 +36,9 @@ const TransactionSchema = new Schema(
 
 TransactionSchema.pre('save', function(next) {
   //  console.log(this);
-  if (!this.category) {
-    this.category = 'uncategory';
-  }
   if (moment(this.date).isValid()) {
     this.year = moment(this.date).format('YYYY');
-    this.month = moment(this.date).format('MM');
+    this.month = moment(this.date).format('YYYY');
   } else {
     throw new Error('something went wrong');
   }

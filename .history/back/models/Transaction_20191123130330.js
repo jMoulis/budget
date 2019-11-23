@@ -13,7 +13,10 @@ const TransactionSchema = new Schema(
       type: String,
       required: true,
     },
-    category: String,
+    category: {
+      type: String,
+      default: 'uncategorized',
+    },
     amount: { type: Number, required: true },
     file: String,
     paymentSolution: String,
@@ -36,9 +39,7 @@ const TransactionSchema = new Schema(
 
 TransactionSchema.pre('save', function(next) {
   //  console.log(this);
-  if (!this.category) {
-    this.category = 'uncategory';
-  }
+  console.log(!!this.category);
   if (moment(this.date).isValid()) {
     this.year = moment(this.date).format('YYYY');
     this.month = moment(this.date).format('MM');

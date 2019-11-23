@@ -13,8 +13,8 @@ const incomesApi = axios.create({
 });
 
 export default {
-  fetchBudgets(query?: string) {
-    return budgetsApi.get(query ? `${query}` : null);
+  fetchBudgets() {
+    return budgetsApi.get('');
   },
   fetchExpenses() {
     return expensesApi.get('');
@@ -27,6 +27,9 @@ export default {
   },
   editOneExpense(id: string, data: any) {
     return expensesApi.patch(`/${id}`, data);
+  },
+  fetchBudgets() {
+    return budgetsApi.get('');
   },
   fetchOneBudget(id: string) {
     return budgetsApi.get(`/${id}`);

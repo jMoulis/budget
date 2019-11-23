@@ -13,7 +13,7 @@ const Budget: React.FC = () => {
   useEffect(() => {
     const fetchBudgets = async () => {
       try {
-        const { data } = await apiRoutes.fetchBudgets();
+        const { data } = await Axios.get(apiRoutes.fetchBudgets());
         setBudgets(data.budget);
       } catch (error) {
         console.log('Error', error.message);

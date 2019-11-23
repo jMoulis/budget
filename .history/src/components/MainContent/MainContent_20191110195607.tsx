@@ -9,7 +9,7 @@ const Root = styled.div`
   label: MainContent;
   grid-area: content;
   background-color: white;
-  border-radius: 3.5rem;
+  border-radius: 5rem;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
   padding: 1rem;
   overflow: hidden;

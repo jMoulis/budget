@@ -51,7 +51,6 @@ const BudgetCategoryDetail: React.FC = () => {
         />
       )}
       {budget &&
-        budget.transactions[0] &&
         budget.transactions[0].data.map(transaction => (
           <ListItem key={transaction._id}>
             <div>

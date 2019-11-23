@@ -30,6 +30,7 @@ const BudgetCategoryDetail: React.FC = () => {
     const fetchBudget = async () => {
       try {
         const { data } = await apiRoutes.fetchBudgets(search);
+        console.log(data.budget);
         setBudget(data.budget);
       } catch (error) {
         console.log('Error', error.message);
@@ -40,6 +41,7 @@ const BudgetCategoryDetail: React.FC = () => {
     }
   }, [search]);
 
+  console.log(budget);
   return (
     <>
       {budget && budget.transactions[0] && (
@@ -51,7 +53,6 @@ const BudgetCategoryDetail: React.FC = () => {
         />
       )}
       {budget &&
-        budget.transactions[0] &&
         budget.transactions[0].data.map(transaction => (
           <ListItem key={transaction._id}>
             <div>

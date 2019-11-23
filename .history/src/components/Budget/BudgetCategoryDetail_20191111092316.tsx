@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import MainContent from 'components/MainContent/MainContent';
 import { useLocation } from 'react-router-dom';
 import Axios from 'axios';
 import moment from 'moment';
 import styled from '@emotion/styled';
 import { SmallCards } from 'components/SmallCards';
-import apiRoutes from 'api/apiRoutes';
 
 const ListItem = styled.div`
   padding: 1rem;
@@ -29,7 +29,9 @@ const BudgetCategoryDetail: React.FC = () => {
   useEffect(() => {
     const fetchBudget = async () => {
       try {
-        const { data } = await apiRoutes.fetchBudgets(search);
+        const { data } = await Axios.get(
+          `http://localhost:8050/api/v1/budgets${search}`
+        );
         setBudget(data.budget);
       } catch (error) {
         console.log('Error', error.message);
@@ -51,7 +53,6 @@ const BudgetCategoryDetail: React.FC = () => {
         />
       )}
       {budget &&
-        budget.transactions[0] &&
         budget.transactions[0].data.map(transaction => (
           <ListItem key={transaction._id}>
             <div>

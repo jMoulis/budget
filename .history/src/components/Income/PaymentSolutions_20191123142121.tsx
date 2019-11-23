@@ -19,7 +19,6 @@ const PaymentListItem = styled.li`
   height: 5rem;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  cursor: pointer;
   & * {
     color: ${({ isSelected }: { isSelected: boolean }) =>
       isSelected ? '#F28A00' : '#4fb3c8'};

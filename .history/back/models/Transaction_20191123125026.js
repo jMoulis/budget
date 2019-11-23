@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const moment = require('moment');
 
 const { Schema } = mongoose;
 
@@ -35,19 +34,9 @@ const TransactionSchema = new Schema(
 );
 
 TransactionSchema.pre('save', function(next) {
-  //  console.log(this);
-  if (!this.category) {
-    this.category = 'uncategory';
-  }
-  if (moment(this.date).isValid()) {
-    this.year = moment(this.date).format('YYYY');
-    this.month = moment(this.date).format('MM');
-  } else {
-    throw new Error('something went wrong');
-  }
+  console.log(this);
   next();
 });
-
 const Transaction = mongoose.model('transaction', TransactionSchema);
 
 module.exports = Transaction;

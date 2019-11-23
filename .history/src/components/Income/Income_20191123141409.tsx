@@ -152,18 +152,15 @@ const Income: React.FC<Props> = () => {
             }))
           }
         />
-        <div>
-          <span>Moyens de paiement</span>
-          <PaymentSolutions
-            onSelect={selectedPayment =>
-              setForm(prevForm => ({
-                ...prevForm,
-                paymentSolution: selectedPayment,
-              }))
-            }
-            selected={form.paymentSolution}
-          />
-        </div>
+        <span>Moyens de paiement</span>
+        <PaymentSolutions
+          onSelect={selectedPayment =>
+            setForm(prevForm => ({
+              ...prevForm,
+              paymentSolution: selectedPayment,
+            }))
+          }
+        />
         <InputWithIcons
           icon={EuroIcon}
           placeholder="Montant"

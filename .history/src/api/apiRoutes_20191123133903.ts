@@ -14,7 +14,7 @@ const incomesApi = axios.create({
 
 export default {
   fetchBudgets(query?: string) {
-    return budgetsApi.get(query ? `${query}` : null);
+    return budgetsApi.get(query ? `{$query}` : null);
   },
   fetchExpenses() {
     return expensesApi.get('');

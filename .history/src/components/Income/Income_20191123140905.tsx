@@ -72,7 +72,7 @@ const Income: React.FC<Props> = () => {
       if (typeof objectToTrim[key] === 'string') {
         return {
           ...acc,
-          [key]: objectToTrim[key].trim(),
+          [key]: objectToTrim.trim(),
         };
       }
       return {
@@ -87,12 +87,11 @@ const Income: React.FC<Props> = () => {
     event.preventDefault();
     try {
       await Axios.post('/transactions', {
-        ...trimObject(form),
+        ...form,
         date: form.date ? moment(form.date, 'DD/MM/YYYY') : '',
       });
     } catch (err) {
-      if (err.response && err.response.data)
-        return setError({ ...err.response.data.error });
+      if (err.response.data) return setError({ ...err.response.data.error });
       setError(err.message);
     }
   };
@@ -152,18 +151,15 @@ const Income: React.FC<Props> = () => {
             }))
           }
         />
-        <div>
-          <span>Moyens de paiement</span>
-          <PaymentSolutions
-            onSelect={selectedPayment =>
-              setForm(prevForm => ({
-                ...prevForm,
-                paymentSolution: selectedPayment,
-              }))
-            }
-            selected={form.paymentSolution}
-          />
-        </div>
+        <span>Moyens de paiement</span>
+        <PaymentSolutions
+          onSelect={selectedPayment =>
+            setForm(prevForm => ({
+              ...prevForm,
+              paymentSolution: selectedPayment,
+            }))
+          }
+        />
         <InputWithIcons
           icon={EuroIcon}
           placeholder="Montant"

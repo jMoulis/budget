@@ -30,7 +30,8 @@ const BudgetCategoryDetail: React.FC = () => {
     const fetchBudget = async () => {
       try {
         const { data } = await apiRoutes.fetchBudgets(search);
-        setBudget(data.budget);
+        console.log(data);
+        // setBudget(data.budget);
       } catch (error) {
         console.log('Error', error.message);
       }
@@ -40,9 +41,10 @@ const BudgetCategoryDetail: React.FC = () => {
     }
   }, [search]);
 
+  console.log(budget);
   return (
     <>
-      {budget && budget.transactions[0] && (
+      {budget && budget.transactions && budget.transactions[0] && (
         <SmallCards
           category={budget.transactions[0].category}
           real={budget.transactions[0].totalReal}
@@ -51,7 +53,6 @@ const BudgetCategoryDetail: React.FC = () => {
         />
       )}
       {budget &&
-        budget.transactions[0] &&
         budget.transactions[0].data.map(transaction => (
           <ListItem key={transaction._id}>
             <div>

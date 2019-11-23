@@ -23,6 +23,9 @@ const PaymentListItem = styled.li`
   & * {
     color: ${({ isSelected }: { isSelected: boolean }) =>
       isSelected ? '#F28A00' : '#4fb3c8'};
+    &:hover {
+      color: '#F28A00';
+    }
   }
 `;
 

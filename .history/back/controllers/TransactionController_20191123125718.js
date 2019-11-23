@@ -21,6 +21,18 @@ module.exports = {
     if (!req.body) next(new Error('No body found'));
     const api = new Api(res, req);
     try {
+      let data = {
+        ...req.body,
+      };
+      // if (moment(req.body.date).isValid()) {
+      //   console.log(moment(req.body.date));
+
+      //   data = {
+      //     ...data,
+      //     month: moment(req.body.date).format('MM'),
+      //     year: moment(req.body.date).format('YYYY'),
+      //   };
+      // }
       const newTransaction = await Transaction.create(req.body);
       if (req.file) {
         await Transaction.updateOne(

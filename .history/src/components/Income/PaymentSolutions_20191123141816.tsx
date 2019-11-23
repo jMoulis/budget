@@ -7,7 +7,7 @@ import styled from '@emotion/styled';
 
 interface Props {
   onSelect: (payment: string) => void;
-  selected: string;
+  isSelected: string;
 }
 
 const Root = styled.ul`
@@ -19,37 +19,29 @@ const PaymentListItem = styled.li`
   height: 5rem;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  cursor: pointer;
   & * {
-    color: ${({ isSelected }: { isSelected: boolean }) =>
-      isSelected ? '#F28A00' : '#4fb3c8'};
+    color: #4fb3c8;
   }
 `;
 
-const PaymentSolutions: React.FC<Props> = ({ onSelect, selected }) => {
+const PaymentSolutions: React.FC<Props> = ({ onSelect, isSelected }) => {
   return (
     <Root>
       <PaymentListItem
         onClick={() => onSelect('creditCard')}
-        isSelected={selected === 'creditCard'}
+        isSelected={isSelected}
       >
         <CreditCardIcon width="5rem" height="5rem" />
       </PaymentListItem>
-      <PaymentListItem
-        onClick={() => onSelect('cash')}
-        isSelected={selected === 'cash'}
-      >
+      <PaymentListItem onClick={() => onSelect('cash')} isSelected={isSelected}>
         <MoneyBillIcon width="5rem" height="5rem" />
       </PaymentListItem>
-      <PaymentListItem
-        onClick={() => onSelect('bank')}
-        isSelected={selected === 'bank'}
-      >
+      <PaymentListItem onClick={() => onSelect('bank')} isSelected={isSelected}>
         <BankIcon width="5rem" height="5rem" />
       </PaymentListItem>
       <PaymentListItem
         onClick={() => onSelect('moneyCheck')}
-        isSelected={selected === 'moneyCheck'}
+        isSelected={isSelected}
       >
         <MoneyCheckIcon width="5rem" height="5rem" />
       </PaymentListItem>

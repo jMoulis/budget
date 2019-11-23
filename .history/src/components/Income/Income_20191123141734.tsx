@@ -161,7 +161,7 @@ const Income: React.FC<Props> = () => {
                 paymentSolution: selectedPayment,
               }))
             }
-            selected={form.paymentSolution}
+            isSelected={form.paymentSolution}
           />
         </div>
         <InputWithIcons

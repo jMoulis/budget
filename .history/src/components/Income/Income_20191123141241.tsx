@@ -85,12 +85,14 @@ const Income: React.FC<Props> = () => {
   const [error, setError] = useState(inputForms);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.lo;
     try {
       await Axios.post('/transactions', {
         ...trimObject(form),
         date: form.date ? moment(form.date, 'DD/MM/YYYY') : '',
       });
     } catch (err) {
+      console.log(err.message);
       if (err.response && err.response.data)
         return setError({ ...err.response.data.error });
       setError(err.message);
@@ -152,18 +154,15 @@ const Income: React.FC<Props> = () => {
             }))
           }
         />
-        <div>
-          <span>Moyens de paiement</span>
-          <PaymentSolutions
-            onSelect={selectedPayment =>
-              setForm(prevForm => ({
-                ...prevForm,
-                paymentSolution: selectedPayment,
-              }))
-            }
-            selected={form.paymentSolution}
-          />
-        </div>
+        <span>Moyens de paiement</span>
+        <PaymentSolutions
+          onSelect={selectedPayment =>
+            setForm(prevForm => ({
+              ...prevForm,
+              paymentSolution: selectedPayment,
+            }))
+          }
+        />
         <InputWithIcons
           icon={EuroIcon}
           placeholder="Montant"

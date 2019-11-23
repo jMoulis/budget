@@ -4,7 +4,6 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import MainContent from 'components/MainContent/MainContent';
 import BudgetDetail from './BudgetDetail';
 import BudgetListItem from './BudgetListItem';
-import apiRoutes from 'api/apiRoutes';
 
 const Budget: React.FC = () => {
   const [budgets, setBudgets] = useState({ budget: null, transactions: [] });
@@ -13,7 +12,9 @@ const Budget: React.FC = () => {
   useEffect(() => {
     const fetchBudgets = async () => {
       try {
-        const { data } = await apiRoutes.fetchBudgets();
+        const { data } = await Axios.get(
+          'http://localhost:8050/api/v1/budgets'
+        );
         setBudgets(data.budget);
       } catch (error) {
         console.log('Error', error.message);

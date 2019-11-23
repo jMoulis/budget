@@ -59,6 +59,7 @@ module.exports = {
           },
         ]);
       } else {
+        console.log(req.query);
         transactions = await Transaction.aggregate([
           {
             $match: req.query,

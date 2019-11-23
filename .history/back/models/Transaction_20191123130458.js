@@ -36,6 +36,7 @@ const TransactionSchema = new Schema(
 
 TransactionSchema.pre('save', function(next) {
   //  console.log(this);
+  console.log();
   if (!this.category) {
     this.category = 'uncategory';
   }

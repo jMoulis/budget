@@ -24,6 +24,9 @@ const PaymentListItem = styled.li`
     color: ${({ isSelected }: { isSelected: boolean }) =>
       isSelected ? '#F28A00' : '#4fb3c8'};
   }
+  &:hover {
+    background-color: '#F28A00';
+  }
 `;
 
 const PaymentSolutions: React.FC<Props> = ({ onSelect, selected }) => {
