@@ -13,7 +13,6 @@ module.exports = {
     {
       name: 'budget',
       script: 'npm',
-      args: 'run start:production',
       env_production: {
         NODE_ENV: 'production',
       },
