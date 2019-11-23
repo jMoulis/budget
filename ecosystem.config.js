@@ -10,13 +10,6 @@ module.exports = {
         NODE_ENV: 'production',
       },
     },
-    {
-      name: 'budget',
-      script: 'npm',
-      env_production: {
-        NODE_ENV: 'production',
-      },
-    },
   ],
 
   deploy: {
