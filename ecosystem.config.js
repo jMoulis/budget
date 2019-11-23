@@ -29,7 +29,7 @@ module.exports = {
       path: '/var/www/html/budget/production',
       ssh_options: ['ForwardAgent=yes'],
       'post-deploy':
-        'npm run server npm install && pm2 reload ecosystem.config.js --env production',
+        'npm run server && npm install && npm run build && pm2 reload ecosystem.config.js --env production',
     },
   },
 };
