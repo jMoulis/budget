@@ -13,6 +13,7 @@ import PaymentSolutions from 'components/Income/PaymentSolutions';
 import RadioButtons from 'components/Income/RadioButtons';
 import Axios from 'axios';
 import moment from 'moment';
+import apiRoutes from 'api/apiRoutes';
 
 interface Props {}
 
@@ -86,10 +87,14 @@ const Income: React.FC<Props> = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      await Axios.post('/transactions', {
+      await apiRoutes.createNewIncome({
         ...trimObject(form),
         date: form.date ? moment(form.date, 'DD/MM/YYYY') : '',
       });
+      /*await Axios.post('/transactions', {
+        ...trimObject(form),
+        date: form.date ? moment(form.date, 'DD/MM/YYYY') : '',
+      });*/
     } catch (err) {
       if (err.response && err.response.data)
         return setError({ ...err.response.data.error });

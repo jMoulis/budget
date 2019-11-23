@@ -9,7 +9,7 @@ const budgetsApi = axios.create({
   baseURL: `${BACKEND_API_URL}/api/v1/budgets`,
 });
 const incomesApi = axios.create({
-  baseURL: `${BACKEND_API_URL}/api/v1/incomes`,
+  baseURL: `${BACKEND_API_URL}/api/v1/transactions`,
 });
 
 export default {
