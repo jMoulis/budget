@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BACKEND_API_URL = 'http://192.168.1.18:8050'; // process.env.REACT_APP_DOMAIN;
+const BACKEND_API_URL = process.env.REACT_APP_DOMAIN;
 
 const expensesApi = axios.create({
   baseURL: `${BACKEND_API_URL}/api/v1/expenses`,
