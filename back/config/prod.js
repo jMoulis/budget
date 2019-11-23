@@ -1,14 +1,5 @@
 module.exports = {
-  mongoURI: 'MONGO_URI',
-  cookieKey: 'uniqueCookieKeyToChange',
-  jwtSecret: 'uniqueJwtKeyToChange',
-  mail: {
-    host: 'host',
-    port: 'port',
-    secure: true,
-    auth: {
-      user: 'user',
-      pass: 'userPassword',
-    },
-  },
+  mongoURI: 'mongodb://localhost/budget',
+  cookieKey: 'fdsdfsdf234f,z%µFél"4',
+  jwtSecret: 'dfgksm234ààzSDFFJlsdfé23kgfjdmfgkldjmflg65423Rfész',
 };
