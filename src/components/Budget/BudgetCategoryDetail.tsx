@@ -61,7 +61,7 @@ const BudgetCategoryDetail: React.FC = () => {
             </div>
             <div>
               <Amount>{transaction.amount}</Amount>
-              <span>{transaction.paymenSolution}</span>
+              <span>{transaction.paymentSolution}</span>
             </div>
           </ListItem>
         ))}
