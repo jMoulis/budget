@@ -39,7 +39,7 @@ module.exports = {
       await User.updateOne({ _id: req.params.userId }, { ...req.body });
       const user = await User.findOne(
         { _id: req.params.userId },
-        { password: 0 },
+        { password: 0 }
       );
       return api.success({
         user,

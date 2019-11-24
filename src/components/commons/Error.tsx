@@ -6,9 +6,9 @@ interface Props {
 }
 
 const Root = styled.span`
-  position: absolute;
-  bottom: -1.8rem;
-  color: #f11a00;
+  font-size: 1rem;
+  color: #ca3434;
+  display: block;
 `;
 
 const Error: React.FC<Props> = ({ error }) => {

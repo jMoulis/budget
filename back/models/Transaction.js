@@ -8,13 +8,14 @@ const TransactionSchema = new Schema(
     date: {
       type: Date,
       default: Date.now(),
+      required: [true, 'La date est obligatoire'],
     },
     label: {
       type: String,
-      required: true,
+      required: [true, 'La désignation est obligatoire'],
     },
     category: String,
-    amount: { type: Number, required: true },
+    amount: { type: Number, required: [true, 'Le montant est obligatoire'] },
     file: String,
     paymentSolution: String,
     currency: String,
@@ -23,7 +24,7 @@ const TransactionSchema = new Schema(
     month: String,
     year: String,
     transactionType: {
-      required: true,
+      required: [true, 'Le type de transaction est obligatoire'],
       type: String,
       enum: ['income', 'expense'],
     },

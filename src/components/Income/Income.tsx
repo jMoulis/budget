@@ -15,27 +15,29 @@ import Axios from 'axios';
 import moment from 'moment';
 import apiRoutes from 'api/apiRoutes';
 
-interface Props {}
+interface Props {
+  setMenu: () => void;
+}
 
-const Form = styled.form`
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-`;
 interface ButtonType {
   alignSelf?: string;
 }
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+`;
 const Button = styled.button<ButtonType>`
   background-color: #df4c6d;
   border-radius: 5px;
   outline: none;
   border: none;
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: white;
-  height: 5rem;
   align-self: ${({ alignSelf }) => alignSelf};
-  padding: 1rem 2rem;
+  padding: 1rem;
   font-weight: 700;
   margin: 1rem 0;
   cursor: pointer;
@@ -46,6 +48,7 @@ const Button = styled.button<ButtonType>`
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
+  padding: 1rem;
   & button {
     margin: 0 0.5rem;
   }
@@ -54,10 +57,10 @@ const ButtonWrapper = styled.div`
 const CancelButton = styled.button`
   border: none;
   background-color: transparent;
-  font-size: 2rem;
+  font-size: 1.5rem;
 `;
 
-const Income: React.FC<Props> = () => {
+const Income: React.FC<Props> = ({ setMenu }) => {
   const inputForms = {
     date: '',
     label: '',
@@ -82,8 +85,12 @@ const Income: React.FC<Props> = () => {
       };
     }, {});
   };
-  const [form, setForm] = useState(inputForms);
+  const [form, setForm] = useState({
+    ...inputForms,
+    date: moment().format('DD/MM/YYYY'),
+  });
   const [error, setError] = useState(inputForms);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
@@ -91,10 +98,7 @@ const Income: React.FC<Props> = () => {
         ...trimObject(form),
         date: form.date ? moment(form.date, 'DD/MM/YYYY') : '',
       });
-      /*await Axios.post('/transactions', {
-        ...trimObject(form),
-        date: form.date ? moment(form.date, 'DD/MM/YYYY') : '',
-      });*/
+      setMenu();
     } catch (err) {
       if (err.response && err.response.data)
         return setError({ ...err.response.data.error });
@@ -103,119 +107,124 @@ const Income: React.FC<Props> = () => {
   };
 
   return (
-    <MainContent header={() => <h1>Nouvelle dépense</h1>}>
-      <Form onSubmit={handleSubmit}>
-        <RadioButtons
-          choices={[
-            {
-              label: 'Dépense',
-              value: 'expense',
-              selectedChoice: form.transactionType,
-            },
-            {
-              label: 'Revenu',
-              value: 'income',
-              selectedChoice: form.transactionType,
-            },
-          ]}
-          onClick={transactionType =>
-            setForm(prevForm => ({ ...prevForm, transactionType }))
+    <Form onSubmit={handleSubmit}>
+      <RadioButtons
+        choices={[
+          {
+            label: 'Dépense',
+            value: 'expense',
+            selectedChoice: form.transactionType,
+            autoFocus: true,
+          },
+          {
+            label: 'Revenu',
+            value: 'income',
+            selectedChoice: form.transactionType,
+          },
+        ]}
+        onClick={transactionType => {
+          if (error.transactionType) {
+            setError(prevError => ({
+              ...prevError,
+              transactionType: '',
+            }));
           }
-          error={error.transactionType}
-        />
+          setForm(prevForm => ({ ...prevForm, transactionType }));
+        }}
+        error={error.transactionType}
+      />
 
-        <InputWithIcons
-          icon={CalendarIcon}
-          placeholder="Date"
-          type="text"
-          value={form.date}
-          error={error.date}
-          onChange={({ currentTarget }) =>
-            setForm(prevForm => ({ ...prevForm, date: currentTarget.value }))
-          }
-        />
-        <InputWithIcons
-          icon={TextIcon}
-          placeholder="Désignation"
-          type="text"
-          value={form.label}
-          error={error.label}
-          onChange={({ currentTarget }) =>
-            setForm(prevForm => ({ ...prevForm, label: currentTarget.value }))
-          }
-        />
-        <InputWithIcons
-          icon={CategoryIcon}
-          placeholder="Category"
-          type="text"
-          value={form.category}
-          error={error.category}
-          onChange={({ currentTarget }) =>
-            setForm(prevForm => ({
-              ...prevForm,
-              category: currentTarget.value,
-            }))
-          }
-        />
-        <div>
-          <span>Moyens de paiement</span>
-          <PaymentSolutions
-            onSelect={selectedPayment =>
-              setForm(prevForm => ({
-                ...prevForm,
-                paymentSolution: selectedPayment,
-              }))
-            }
-            selected={form.paymentSolution}
-          />
-        </div>
-        <InputWithIcons
-          icon={EuroIcon}
-          placeholder="Montant"
-          type="text"
-          value={form.amount}
-          error={error.amount}
-          onChange={({ currentTarget }) =>
-            setForm(prevForm => ({ ...prevForm, amount: currentTarget.value }))
-          }
-        />
-        <InputWithIcons
-          icon={StoreIcon}
-          placeholder="Societe"
-          type="text"
-          value={form.companyName}
-          error={error.companyName}
-          onChange={({ currentTarget }) =>
-            setForm(prevForm => ({
-              ...prevForm,
-              companyName: currentTarget.value,
-            }))
-          }
-        />
-        <InputWithIcons
-          icon={StreetIcon}
-          placeholder="Emplacement"
-          type="text"
-          value={form.location}
-          error={error.location}
-          onChange={({ currentTarget }) =>
-            setForm(prevForm => ({
-              ...prevForm,
-              location: currentTarget.value,
-            }))
-          }
-        />
-        <InputWithIcons
-          icon={CameraIcon}
-          placeholder="Ajouter un document"
-          type="text"
-        />
-        <ButtonWrapper>
-          <Button type="submit">Créer</Button>
-          <CancelButton type="button">Annuler</CancelButton>
-        </ButtonWrapper>
-      </Form>
-    </MainContent>
+      <InputWithIcons
+        icon={CalendarIcon}
+        placeholder="Date"
+        type="text"
+        value={form.date}
+        error={error.date}
+        onChange={({ currentTarget }) =>
+          setForm(prevForm => ({ ...prevForm, date: currentTarget.value }))
+        }
+      />
+      <InputWithIcons
+        icon={TextIcon}
+        placeholder="Désignation"
+        type="text"
+        value={form.label}
+        error={error.label}
+        onChange={({ currentTarget }) =>
+          setForm(prevForm => ({ ...prevForm, label: currentTarget.value }))
+        }
+      />
+      <InputWithIcons
+        icon={CategoryIcon}
+        placeholder="Category"
+        type="text"
+        value={form.category}
+        error={error.category}
+        onChange={({ currentTarget }) =>
+          setForm(prevForm => ({
+            ...prevForm,
+            category: currentTarget.value,
+          }))
+        }
+      />
+      <InputWithIcons
+        icon={EuroIcon}
+        placeholder="Montant"
+        type="text"
+        value={form.amount}
+        error={error.amount}
+        onChange={({ currentTarget }) =>
+          setForm(prevForm => ({ ...prevForm, amount: currentTarget.value }))
+        }
+      />
+      <PaymentSolutions
+        onSelect={selectedPayment =>
+          setForm(prevForm => ({
+            ...prevForm,
+            paymentSolution: selectedPayment,
+          }))
+        }
+        selected={form.paymentSolution}
+      />
+
+      <InputWithIcons
+        icon={StoreIcon}
+        placeholder="Societe"
+        type="text"
+        value={form.companyName}
+        error={error.companyName}
+        onChange={({ currentTarget }) =>
+          setForm(prevForm => ({
+            ...prevForm,
+            companyName: currentTarget.value,
+          }))
+        }
+      />
+      <InputWithIcons
+        icon={StreetIcon}
+        placeholder="Emplacement"
+        type="text"
+        value={form.location}
+        error={error.location}
+        onChange={({ currentTarget }) =>
+          setForm(prevForm => ({
+            ...prevForm,
+            location: currentTarget.value,
+          }))
+        }
+      />
+      <InputWithIcons
+        icon={CameraIcon}
+        placeholder="Ajouter un document"
+        type="text"
+      />
+      <ButtonWrapper>
+        <Button type="submit">Créer</Button>
+        <CancelButton type="button" onClick={setMenu}>
+          Annuler
+        </CancelButton>
+      </ButtonWrapper>
+    </Form>
   );
 };
 

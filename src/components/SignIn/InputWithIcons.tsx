@@ -14,15 +14,16 @@ interface Props {
 const Root = styled.div`
   display: flex;
   align-items: center;
-  margin: 1.5rem 0;
   position: relative;
+  margin: 0.5rem 0;
+  margin-bottom: ${({ error }: { error: boolean }) => (error ? '0' : '0.5rem')};
 `;
 
 const IconWrapper = styled.div`
   background-color: ${({ error }: { error: boolean }) =>
-    error ? '#F11A00' : '#4fb3c8'};
+    error ? '#ca3434' : '#4fb3c8'};
   padding: 1rem;
-  height: 5rem;
+  height: 4rem;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   & * {
@@ -32,14 +33,16 @@ const IconWrapper = styled.div`
 
 const Input = styled.input`
   background-color: #f4f4f4;
-  border: none;
+  border: 1px solid
+    ${({ error }: { error: boolean }) => (error ? '#ca3434' : '#4fb3c8')};
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   padding: 1rem;
   flex: 1;
-  height: 5rem;
-  font-size: 2rem;
+  height: 4rem;
+  font-size: 1.5rem;
   outline: none;
+  width: 100%;
 `;
 
 const InputWithIcons: React.FC<Props> = ({
@@ -52,18 +55,19 @@ const InputWithIcons: React.FC<Props> = ({
 }) => {
   return (
     <div>
-      <Root>
+      <Root error={!!error}>
         <IconWrapper error={!!error}>
-          <rest.icon height="3rem" width="3rem" />
+          <rest.icon height="2rem" width="2rem" />
         </IconWrapper>
         <Input
           type={type}
           placeholder={placeholder}
           onChange={onChange}
           value={value}
+          error={!!error}
         />
-        {error && <Error error={error} />}
       </Root>
+      {error && <Error error={error} />}
     </div>
   );
 };

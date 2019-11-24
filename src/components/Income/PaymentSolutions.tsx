@@ -12,17 +12,31 @@ interface Props {
 
 const Root = styled.ul`
   display: flex;
-  justify-content: space-between;
+  margin: 0.5rem 0;
 `;
 
 const PaymentListItem = styled.li`
-  height: 5rem;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  background-color: ${({ isSelected }: { isSelected: boolean }) =>
+    isSelected ? '#F28A00' : '#4fb3c8'};
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
   cursor: pointer;
+  &:last-of-type {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  &:first-of-type {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  &:focus {
+    background-color: #f28a00;
+  }
   & * {
-    color: ${({ isSelected }: { isSelected: boolean }) =>
-      isSelected ? '#F28A00' : '#4fb3c8'};
+    color: #ffffff;
   }
 `;
 
@@ -30,28 +44,32 @@ const PaymentSolutions: React.FC<Props> = ({ onSelect, selected }) => {
   return (
     <Root>
       <PaymentListItem
+        tabIndex={0}
         onClick={() => onSelect('creditCard')}
         isSelected={selected === 'creditCard'}
       >
-        <CreditCardIcon width="5rem" height="5rem" />
+        <CreditCardIcon width="3rem" height="3rem" />
       </PaymentListItem>
       <PaymentListItem
+        tabIndex={0}
         onClick={() => onSelect('cash')}
         isSelected={selected === 'cash'}
       >
-        <MoneyBillIcon width="5rem" height="5rem" />
+        <MoneyBillIcon width="3rem" height="3rem" />
       </PaymentListItem>
       <PaymentListItem
+        tabIndex={0}
         onClick={() => onSelect('bank')}
         isSelected={selected === 'bank'}
       >
-        <BankIcon width="5rem" height="5rem" />
+        <BankIcon width="3rem" height="3rem" />
       </PaymentListItem>
       <PaymentListItem
+        tabIndex={0}
         onClick={() => onSelect('moneyCheck')}
         isSelected={selected === 'moneyCheck'}
       >
-        <MoneyCheckIcon width="5rem" height="5rem" />
+        <MoneyCheckIcon width="3rem" height="3rem" />
       </PaymentListItem>
     </Root>
   );

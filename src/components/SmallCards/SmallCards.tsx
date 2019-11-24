@@ -11,14 +11,13 @@ const Root = styled.div`
   border-radius: 2rem;
   flex: 1;
   margin: 0.5rem;
-  min-height: 15rem;
-  max-height: 15rem;
+  min-height: 10rem;
+  max-height: 10rem;
 `;
 const Header = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 8px;
 `;
 
 const Content = styled.div`
@@ -40,12 +39,11 @@ interface BadgeType {
 
 const Badge = styled.span<BadgeType>`
   display: flex;
-  background-color: ${({ isNegative }) => (isNegative ? '#F11A00' : '#55b891')};
+  background-color: ${({ isNegative }) => (isNegative ? '#ca3434' : '#55b891')};
   color: white;
   border-radius: 100px;
   text-align: center;
   font-size: 2.5rem;
-  padding: 0.5rem;
   align-items: center;
   justify-content: center;
   min-width: 8rem;

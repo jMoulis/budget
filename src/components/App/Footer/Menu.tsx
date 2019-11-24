@@ -9,18 +9,17 @@ interface Props {}
 const Root = styled.div`
   position: absolute;
   display: flex;
-  justify-content: center;
-  top: -3.5rem;
-  left: 0;
+  justify-content: flex-end;
   right: 0;
+  left: 0;
+  bottom: 1rem;
 `;
 
 const Button = styled.button`
   border: none;
   background-color: #49d18f;
-  width: 15rem;
   border-radius: 100px;
-  padding: 1rem;
+  padding: 0.5rem;
   box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
@@ -45,10 +44,10 @@ const Menu: React.FC<Props> = () => {
   const [showMenu, setShowMenu] = useState(false);
   return (
     <Root>
-      <Button onClick={() => setShowMenu(prevState => !prevState)}>
-        <CustomPlusIcon showMenu={showMenu} height="4.5rem" width="4.5rem" />
-      </Button>
       {showMenu && <Background setShowMenu={setShowMenu} />}
+      <Button onClick={() => setShowMenu(prevState => !prevState)}>
+        <CustomPlusIcon showMenu={showMenu} height="5rem" width="5rem" />
+      </Button>
     </Root>
   );
 };
